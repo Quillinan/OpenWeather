@@ -1,10 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
+
+interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
 function App() {
   const [count, setCount] = useState(0)
+  const [post, setPost] = useState<Post>({} as Post);
+
+  const updatePost = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/1`,
+      );
+      if (response.status === 200 || Object.keys(response.data).length !== 0) {
+          setPost(response.data);
+        } else {
+          setPost({} as Post);
+        }
+    } catch (error) {
+      alert("Desculpe, ocorreu um erro inesperado");
+      console.log(error);
+    }
+  };
+  
+
+  useEffect(() => {
+    updatePost()
+  }, []);
 
   return (
     <>
@@ -16,7 +46,9 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + React + Axios</h1>
+      <p>Post title: {post.title}</p>
+      <p>Post body: {post.body}</p>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
