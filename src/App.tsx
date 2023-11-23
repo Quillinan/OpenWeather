@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 interface Post {
   userId: number;
@@ -20,16 +21,28 @@ function App() {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/1`,
       );
-      if (response.status === 200 || Object.keys(response.data).length !== 0) {
+      if (response.status === 200) {
           setPost(response.data);
         } else {
           setPost({} as Post);
         }
     } catch (error) {
-      alert("Desculpe, ocorreu um erro inesperado");
+      Swal.fire({
+        title: "Conection error",
+        text: "Error with API connection",
+        icon: "error"
+      });
       console.log(error);
     }
   };
+
+  const setError = async () => {
+    Swal.fire({
+      title: "It lives!",
+      text: "Just an error to show Swal working",
+      icon: "success"
+    });
+  }
   
 
   useEffect(() => {
@@ -49,6 +62,9 @@ function App() {
       <h1>Vite + React + Axios</h1>
       <p>Post title: {post.title}</p>
       <p>Post body: {post.body}</p>
+      <button onClick={() => setError()}>
+          Show error
+        </button>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
