@@ -6,22 +6,35 @@ import ToggleSwitch from "./ToggleSwitch";
 interface PanelProps {}
 
 const Panel: React.FC<PanelProps> = () => {
+  const [isFahrenheit, setIsFahrenheit] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [number, setNumber] = useState(31);
+  const [unit, setUnit] = useState("°C");
+  const [toggleUnit, setToggleUnit] = useState("°F");
+
   const handleCityChange = (city: string) => {
     console.log(`Cidade selecionada: ${city}`);
   };
 
-  const [isFahrenheit, setIsFahrenheit] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
   const toggleFahrenheit = () => {
     setIsFahrenheit((prev) => !prev);
-    console.log("Fahrenheit");
+    if (isFahrenheit) {
+      setUnit("°F");
+      setNumber(31);
+      setToggleUnit("°C");
+    } else {
+      setUnit("°C");
+      setNumber(convertCtoF(number));
+      setToggleUnit("°F");
+    }
+  };
+
+  const convertCtoF = (value: number): number => {
+    return (value * 9) / 5 + 32;
   };
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
-
-    // Adicione ou remova a classe do corpo da página
     document.body.classList.toggle("dark-mode", !isDarkMode);
   };
 
@@ -37,8 +50,8 @@ const Panel: React.FC<PanelProps> = () => {
       <TemperatureSection>
         <TemperatureLabel>
           <img src="/ball.svg" alt="Bola" />
-          <p className="number">31</p>
-          <p className="unit">°C</p>
+          <p className="number">{number}</p>
+          <p className="unit">{unit}</p>
         </TemperatureLabel>
         <p className="text">Céu aberto</p>
       </TemperatureSection>
@@ -49,7 +62,7 @@ const Panel: React.FC<PanelProps> = () => {
       </DateSection>
 
       <ButtonsSection>
-        <ToggleSwitch label="°F" onToggle={toggleFahrenheit} />
+        <ToggleSwitch label={toggleUnit} onToggle={() => toggleFahrenheit()} />
         <ToggleSwitch label="Dark Mode" onToggle={toggleDarkMode} />
       </ButtonsSection>
 
