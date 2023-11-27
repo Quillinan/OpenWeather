@@ -31,7 +31,7 @@ const Principal: React.FC<PrincipalProps> = () => {
 
       <CityLabel>
         <p className="cityName">São Paulo</p>
-        <p>Lat: 44.34 Long: 10.99</p>
+        <p className="noDarkMode">Lat: 44.34 Long: 10.99</p>
       </CityLabel>
 
       {showTodayInfos ? (
@@ -41,7 +41,7 @@ const Principal: React.FC<PrincipalProps> = () => {
       )}
 
       <Footer>
-        <p>Dados fornecidos pela</p>
+        <p className="noDarkMode">Dados fornecidos pela</p>
         <p className="enterprise">Open Weather API</p>
       </Footer>
     </StyledPrincipal>
@@ -56,6 +56,10 @@ const StyledPrincipal = styled.div`
   display: flex;
   flex-direction: column;
   gap: 50px;
+
+  .noDarkMode {
+    color: #222;
+  }
 `;
 
 const TitleLabel = styled.div`

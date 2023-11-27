@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 interface ToggleLineProps {
   label: string;
+  onToggle: () => void;
 }
 
-const ToggleSwitch: React.FC<ToggleLineProps> = ({ label }) => {
+const ToggleSwitch: React.FC<ToggleLineProps> = ({ label, onToggle }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
+    onToggle();
   };
 
   return (

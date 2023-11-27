@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import CitySearchBar from "./CitySearchBar";
 import ToggleSwitch from "./ToggleSwitch";
@@ -7,6 +8,21 @@ interface PanelProps {}
 const Panel: React.FC<PanelProps> = () => {
   const handleCityChange = (city: string) => {
     console.log(`Cidade selecionada: ${city}`);
+  };
+
+  const [isFahrenheit, setIsFahrenheit] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleFahrenheit = () => {
+    setIsFahrenheit((prev) => !prev);
+    console.log("Fahrenheit");
+  };
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+
+    // Adicione ou remova a classe do corpo da página
+    document.body.classList.toggle("dark-mode", !isDarkMode);
   };
 
   return (
@@ -21,7 +37,7 @@ const Panel: React.FC<PanelProps> = () => {
       <TemperatureSection>
         <TemperatureLabel>
           <img src="/ball.svg" alt="Bola" />
-          <p>31</p>
+          <p className="number">31</p>
           <p className="unit">°C</p>
         </TemperatureLabel>
         <p className="text">Céu aberto</p>
@@ -33,8 +49,8 @@ const Panel: React.FC<PanelProps> = () => {
       </DateSection>
 
       <ButtonsSection>
-        <ToggleSwitch label="°F" />
-        <ToggleSwitch label="Dark Mode" />
+        <ToggleSwitch label="°F" onToggle={toggleFahrenheit} />
+        <ToggleSwitch label="Dark Mode" onToggle={toggleDarkMode} />
       </ButtonsSection>
 
       <p className="footer">Todos os direitos reservados. 2023.</p>
@@ -44,7 +60,6 @@ const Panel: React.FC<PanelProps> = () => {
 
 const StyledPanel = styled.div`
   flex: 1;
-  background-color: #fff;
   padding: 55px;
   display: flex;
   flex-direction: column;
@@ -86,12 +101,7 @@ const TemperatureSection = styled.div`
   gap: 50px;
   align-items: center;
   .text {
-    color: #222;
-    font-family: "Poppins";
     font-size: 32px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 48px;
 
     text-align-last: center;
     width: 70%;
@@ -106,7 +116,7 @@ const TemperatureLabel = styled.div`
 
   max-height: 150px;
 
-  p {
+  .number {
     color: #ec6e4c;
     font-family: "Poppins";
     font-size: 150px;

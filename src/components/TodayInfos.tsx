@@ -25,7 +25,7 @@ const TodayInfos: React.FC<TodayInfosProps> = () => {
           <p className="info">12m/s</p>
         </Box>
       </Line>
-      <p>Não, você não deve levar um casaquinho!</p>
+      <p className="noDarkMode">Não, você não deve levar um casaquinho!</p>
     </StyledTodayInfos>
   );
 };
@@ -37,7 +37,7 @@ const StyledTodayInfos = styled.div`
   flex-direction: column;
   gap: 50px;
 
-  p {
+  .noDarkMode {
     color: #afadad;
     font-size: 24px;
     font-style: italic;
