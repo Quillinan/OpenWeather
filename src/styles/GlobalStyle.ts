@@ -1,17 +1,15 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-	* {
-		font-family: "Poppins";
-        font-weight: 400;
-	}
 
-    .principal{
-        background-color: #EFEFEF;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+    p {
+    color: #222;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 48px;
+  }
 `;
 
 export default GlobalStyle;
