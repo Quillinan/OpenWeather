@@ -28,7 +28,8 @@ const TodayInfos: React.FC<TodayInfosProps> = () => {
         </Box>
       </Line>
 
-      {cityInfo?.main.temp_min > 17 ? (
+      {cityInfo?.main?.temp_min !== undefined &&
+      cityInfo?.main?.temp_min > 17 ? (
         <p className="noDarkMode">Não, você não deve levar um casaquinho!</p>
       ) : (
         <p className="noDarkMode">Você deve levar um casaquinho!</p>
