@@ -1,20 +1,36 @@
 import styled from "styled-components";
 import { useCityInfo } from "../context/CityInfoContext";
+import { convertCtoF, useFahrenheit } from "../context/FahrenheitContext";
 
 interface TodayInfosProps {}
 
 const TodayInfos: React.FC<TodayInfosProps> = () => {
   const { cityInfo } = useCityInfo();
+  const { far } = useFahrenheit();
+  const temp_min = far
+    ? convertCtoF(cityInfo?.main.temp_min)
+    : cityInfo?.main.temp_min;
+  const temp_max = far
+    ? convertCtoF(cityInfo?.main.temp_max)
+    : cityInfo?.main.temp_max;
   return (
     <StyledTodayInfos>
       <Line>
         <Box>
           <p className="title">Mínima</p>
-          <p className="info">{cityInfo?.main.temp_min} °C</p>
+          <p className="info">
+            {temp_min !== undefined
+              ? `${temp_min.toFixed(2)}°${far ? "F" : "C"}`
+              : "N/A"}
+          </p>
         </Box>
         <Box>
           <p className="title">Máxima</p>
-          <p className="info">{cityInfo?.main.temp_max} °C</p>
+          <p className="info">
+            {temp_max !== undefined
+              ? `${temp_max.toFixed(2)}°${far ? "F" : "C"}`
+              : "N/A"}
+          </p>
         </Box>
       </Line>
       <Line>

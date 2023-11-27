@@ -6,7 +6,14 @@ import React, {
   SetStateAction,
 } from "react";
 
-interface CityInfo {
+interface Weather {
+  id: number;
+  main: string;
+  description: string;
+  icon: string;
+}
+
+export interface CityInfo {
   base: string;
   clouds: { all: number };
   cod: number;
@@ -22,16 +29,7 @@ interface CityInfo {
     humidity: number;
   };
   name: string;
-  sys: {
-    type: number;
-    id: number;
-    country: string;
-    sunrise: number;
-    sunset: number;
-  };
-  timezone: number;
-  visibility: number;
-  weather: Array<{}>;
+  weather: Weather[];
   wind: {
     speed: number;
     deg: number;
@@ -43,7 +41,7 @@ interface CityInfoContextType {
   setCityInfo: Dispatch<SetStateAction<CityInfo | null>>;
 }
 
-export const CityInfoContext = createContext<CityInfoContextType | undefined>(
+const CityInfoContext = createContext<CityInfoContextType | undefined>(
   undefined
 );
 

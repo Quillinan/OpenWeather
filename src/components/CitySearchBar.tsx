@@ -24,7 +24,7 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
       const response = await axios.get(
         `${apiUrl}/weather?q=${encodeURIComponent(
           cityName
-        )}&appid=${apiKey}&units=metric`
+        )}&lang=pt_br&appid=${apiKey}&units=metric`
       );
 
       if (response.data) {
@@ -45,7 +45,7 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
       .get(
         `${apiUrl}/weather?q=${encodeURIComponent(
           defaultCity
-        )}&appid=${apiKey}&units=metric`
+        )}&lang=pt_br&appid=${apiKey}&units=metric`
       )
       .then((response) => {
         if (response.data) {
