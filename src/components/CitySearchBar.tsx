@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useCityInfo } from "../context/CityInfoContext";
@@ -37,6 +37,28 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    const defaultCity = "Rio de Janeiro";
+
+    axios
+      .get(
+        `${apiUrl}/weather?q=${encodeURIComponent(
+          defaultCity
+        )}&appid=${apiKey}&units=metric`
+      )
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          setCityInfo(response.data);
+          onCityChange(defaultCity);
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <StyledLabel>
