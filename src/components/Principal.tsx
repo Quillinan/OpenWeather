@@ -38,11 +38,7 @@ const Principal: React.FC<PrincipalProps> = () => {
         </p>
       </CityLabel>
 
-      {showTodayInfos ? (
-        <TodayInfos />
-      ) : (
-        <GraphicInfo imageUrl="/gráfico.svg" />
-      )}
+      {showTodayInfos ? <TodayInfos /> : <GraphicInfo />}
 
       <Footer>
         <p className="noDarkMode">Dados fornecidos pela</p>

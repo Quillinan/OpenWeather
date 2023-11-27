@@ -1,24 +1,58 @@
 import React from "react";
 import styled from "styled-components";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
+import { useCityInfo } from "../context/CityInfoContext";
 
-interface GraphicInfoProps {
-  imageUrl: string;
-}
+interface GraphicInfoProps {}
 
-const GraphicInfo: React.FC<GraphicInfoProps> = ({ imageUrl }) => {
+const GraphicInfo: React.FC<GraphicInfoProps> = () => {
+  const { graphicInfo } = useCityInfo();
+
+  const data = graphicInfo?.list.map((item) => {
+    const date = new Date(item.dt * 1000);
+    const day = String(date.getDate()).padStart(2, "0");
+
+    return {
+      dia: day,
+      temperatura: item.main.temp,
+    };
+  });
+
   return (
     <GraphicContainer>
-      <GraphicImage src={imageUrl} alt="gráfico" />
+      <LineChart
+        width={1000}
+        height={500}
+        data={data}
+        margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="dia" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="temperatura"
+          stroke="#8884d8"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
     </GraphicContainer>
   );
 };
 
 const GraphicContainer = styled.div`
   margin-top: 10px;
-`;
-
-const GraphicImage = styled.img`
-  object-fit: cover;
+  width: 100%;
 `;
 
 export default GraphicInfo;

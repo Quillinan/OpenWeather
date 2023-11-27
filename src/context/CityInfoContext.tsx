@@ -36,9 +36,49 @@ export interface CityInfo {
   };
 }
 
+interface CityDetails {
+  coord: { lat: number; lon: number };
+  country: string;
+  id: number;
+  name: string;
+  population: number;
+  sunrise: number;
+  sunset: number;
+  timezone: number;
+}
+
+interface WeatherItem {
+  clouds: {};
+  dt: number;
+  dt_txt: Date;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+  };
+  pop: number;
+  rain: {};
+  sys: { pod: string };
+  visibility: number;
+  weather: [];
+  wind: {};
+}
+
+interface GraphicInfo {
+  city: CityDetails;
+  cnt: number;
+  cod: string;
+  list: WeatherItem[];
+  message: number;
+}
+
 interface CityInfoContextType {
   cityInfo: CityInfo | null;
+  graphicInfo: GraphicInfo | null;
   setCityInfo: Dispatch<SetStateAction<CityInfo | null>>;
+  setGraphicInfo: Dispatch<SetStateAction<GraphicInfo | null>>;
 }
 
 const CityInfoContext = createContext<CityInfoContextType | undefined>(
@@ -49,9 +89,12 @@ export const CityInfoProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cityInfo, setCityInfo] = useState<CityInfo | null>(null);
+  const [graphicInfo, setGraphicInfo] = useState<GraphicInfo | null>(null);
 
   return (
-    <CityInfoContext.Provider value={{ cityInfo, setCityInfo }}>
+    <CityInfoContext.Provider
+      value={{ cityInfo, setCityInfo, graphicInfo, setGraphicInfo }}
+    >
       {children}
     </CityInfoContext.Provider>
   );
