@@ -38,6 +38,8 @@
   - npm run dev
   ```
 
+- Basta digitar a cidade de sua preferência no campo e clickar na lupa para executar a busca
+
 #
 
 ### Deploy do projeto
