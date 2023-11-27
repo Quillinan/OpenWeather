@@ -1,5 +1,7 @@
 import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { useCityInfo } from "../context/CityInfoContext";
 
 interface CitySearchBarProps {
   onCityChange: (city: string) => void;
@@ -7,15 +9,38 @@ interface CitySearchBarProps {
 
 const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
   const [formData, setFormData] = useState({ city: "" });
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const { setCityInfo } = useCityInfo();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    onCityChange(e.target.value);
+  };
+
+  const handleSearchClick = async () => {
+    try {
+      const cityName = formData.city;
+
+      const response = await axios.get(
+        `${apiUrl}/weather?q=${encodeURIComponent(
+          cityName
+        )}&appid=${apiKey}&units=metric`
+      );
+
+      if (response.data) {
+        console.log(response.data);
+        setCityInfo(response.data);
+        onCityChange(formData.city);
+      } else {
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <StyledLabel>
-      <img src="/lupeIcon.svg" alt="Lupa" />
+      <img src="/lupeIcon.svg" alt="Lupa" onClick={handleSearchClick} />
       <StyledInput
         name="city"
         placeholder="Procure por uma cidade"
