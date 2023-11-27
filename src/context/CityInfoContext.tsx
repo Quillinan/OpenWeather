@@ -1,21 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-interface CityInfo {
-  cityName: string;
-  latitude: number;
-  longitude: number;
-  minTemperature: number;
-  maxTemperature: number;
-  humidity: number;
-  windSpeed: number;
-}
+interface CityInfo {}
 
 interface CityInfoContextType {
   cityInfo: CityInfo | null;
-  setCityInfo: React.Dispatch<React.SetStateAction<CityInfo | null>>;
+  setCityInfo: Dispatch<SetStateAction<CityInfo | null>>;
 }
 
-const CityInfoContext = createContext<CityInfoContextType | undefined>(
+export const CityInfoContext = createContext<CityInfoContextType | undefined>(
   undefined
 );
 

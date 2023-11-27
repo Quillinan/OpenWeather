@@ -1,31 +1,38 @@
 import styled from "styled-components";
+import { useCityInfo } from "../context/CityInfoContext";
 
 interface TodayInfosProps {}
 
 const TodayInfos: React.FC<TodayInfosProps> = () => {
+  const { cityInfo } = useCityInfo();
   return (
     <StyledTodayInfos>
       <Line>
         <Box>
           <p className="title">Mínima</p>
-          <p className="info">31 °C</p>
+          <p className="info">{cityInfo?.main.temp_min} °C</p>
         </Box>
         <Box>
           <p className="title">Máxima</p>
-          <p className="info">48 °C</p>
+          <p className="info">{cityInfo?.main.temp_max} °C</p>
         </Box>
       </Line>
       <Line>
         <Box>
           <p className="title">Umidade</p>
-          <p className="info">64%</p>
+          <p className="info">{cityInfo?.main.humidity}%</p>
         </Box>
         <Box>
           <p className="title">Velocidade do vento</p>
-          <p className="info">12m/s</p>
+          <p className="info">{cityInfo?.wind.speed} m/s</p>
         </Box>
       </Line>
-      <p className="noDarkMode">Não, você não deve levar um casaquinho!</p>
+
+      {cityInfo?.main.temp_min > 17 ? (
+        <p className="noDarkMode">Não, você não deve levar um casaquinho!</p>
+      ) : (
+        <p className="noDarkMode">Você deve levar um casaquinho!</p>
+      )}
     </StyledTodayInfos>
   );
 };

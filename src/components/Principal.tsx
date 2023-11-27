@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import TodayInfos from "./TodayInfos";
 import GraphicInfo from "./GraphicInfo";
+import { useCityInfo } from "../context/CityInfoContext";
 
 interface PrincipalProps {}
 
 const Principal: React.FC<PrincipalProps> = () => {
   const [showTodayInfos, setShowTodayInfos] = useState(true);
+  const { cityInfo } = useCityInfo();
 
   const handleTabClick = (tab: "today" | "nextDays") => {
     setShowTodayInfos(tab === "today");
@@ -30,8 +32,10 @@ const Principal: React.FC<PrincipalProps> = () => {
       </TitleLabel>
 
       <CityLabel>
-        <p className="cityName">São Paulo</p>
-        <p className="noDarkMode">Lat: 44.34 Long: 10.99</p>
+        <p className="cityName">{cityInfo?.name}</p>
+        <p className="noDarkMode">
+          Lat: {cityInfo?.coord.lat} Long: {cityInfo?.coord.lon}
+        </p>
       </CityLabel>
 
       {showTodayInfos ? (
