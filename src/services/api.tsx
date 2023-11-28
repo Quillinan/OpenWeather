@@ -15,7 +15,7 @@ export const api = async (url: string): Promise<any> => {
       if (axiosError.response?.status === 401) {
         Swal.fire({
           title: "Não autorizado",
-          text: "Não autorizado para acessar a API.",
+          text: "Chave da API inválida.",
           icon: "error",
         });
       } else if (axiosError.response?.status === 404) {
@@ -28,13 +28,15 @@ export const api = async (url: string): Promise<any> => {
         Swal.fire({
           title: "Muitas chamadas",
           text: "Muitas chamadas para a API. Tente novamente mais tarde.",
-          icon: "error",
+          icon: "warning",
         });
       } else {
         Swal.fire({
-          title: "Erro",
-          text: "Verifique os status da API.",
           icon: "error",
+          title: "Erro",
+          text: "Erro na requisição da API.",
+          footer:
+            '<a href="https://home.openweathermap.org/questions">Entre em contato com a OpenWeather</a>',
         });
       }
     } else {

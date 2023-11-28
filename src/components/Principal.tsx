@@ -19,14 +19,12 @@ const Principal: React.FC<PrincipalProps> = () => {
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("today")}
-        >
+          onClick={() => handleTabClick("today")}>
           Hoje
         </p>
         <p
           className={!showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("nextDays")}
-        >
+          onClick={() => handleTabClick("nextDays")}>
           Próximos dias
         </p>
       </TitleLabel>
@@ -71,12 +69,14 @@ const TitleLabel = styled.div`
   .p-select {
     color: #222;
     font-size: 48px;
+    cursor: pointer;
   }
 
   .p-unselect {
     color: #c8c8c8;
     font-size: 48px;
     font-style: normal;
+    cursor: pointer;
   }
 `;
 

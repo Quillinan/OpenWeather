@@ -29,6 +29,8 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
       console.log(weatherResponse);
       setCityInfo(weatherResponse);
       onCityChange(formData.city);
+    } else {
+      return;
     }
 
     const forecastResponse = await getForecast(cityName);
@@ -36,6 +38,8 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
       console.log(forecastResponse);
       setGraphicInfo(forecastResponse);
       onCityChange(formData.city);
+    } else {
+      return;
     }
   };
 
@@ -71,6 +75,7 @@ const StyledLabel = styled.div`
   img {
     width: 36.697px;
     height: 40px;
+    cursor: pointer;
   }
 `;
 
