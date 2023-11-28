@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import styled from "styled-components";
 import { useCityInfo } from "../context/CityInfoContext";
+import { getWeather } from "../services/getWeather";
+import { getForecast } from "../services/getForecast";
 
 interface CitySearchBarProps {
   onCityChange: (city: string) => void;
@@ -9,8 +10,6 @@ interface CitySearchBarProps {
 
 const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
   const [formData, setFormData] = useState({ city: "" });
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const apiUrl = import.meta.env.VITE_API_URL;
   const { setCityInfo, setGraphicInfo } = useCityInfo();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,83 +17,30 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
   };
 
   const handleSearchClick = async () => {
-    try {
-      const cityName = formData.city;
+    let cityName = formData.city;
+    const defaultCity = "Rio de Janeiro";
 
-      const response = await axios.get(
-        `${apiUrl}/weather?q=${encodeURIComponent(
-          cityName
-        )}&lang=pt_br&appid=${apiKey}&units=metric`
-      );
-
-      if (response.data) {
-        console.log(response.data);
-        setCityInfo(response.data);
-        onCityChange(formData.city);
-      } else {
-      }
-    } catch (error) {
-      console.error(error);
+    if (!cityName) {
+      cityName = defaultCity;
     }
 
-    try {
-      const cityName = formData.city;
+    const weatherResponse = await getWeather(cityName);
+    if (weatherResponse) {
+      console.log(weatherResponse);
+      setCityInfo(weatherResponse);
+      onCityChange(formData.city);
+    }
 
-      const response = await axios.get(
-        `${apiUrl}/forecast?q=${encodeURIComponent(
-          cityName
-        )}&lang=pt_br&appid=${apiKey}&units=metric&ctn=40`
-      );
-
-      if (response.data) {
-        console.log(response.data);
-        setGraphicInfo(response.data);
-        onCityChange(formData.city);
-      } else {
-      }
-    } catch (error) {
-      console.error(error);
+    const forecastResponse = await getForecast(cityName);
+    if (forecastResponse) {
+      console.log(forecastResponse);
+      setGraphicInfo(forecastResponse);
+      onCityChange(formData.city);
     }
   };
 
   useEffect(() => {
-    const defaultCity = "Rio de Janeiro";
-
-    axios
-      .get(
-        `${apiUrl}/weather?q=${encodeURIComponent(
-          defaultCity
-        )}&lang=pt_br&appid=${apiKey}&units=metric`
-      )
-      .then((response) => {
-        if (response.data) {
-          console.log(response.data);
-          setCityInfo(response.data);
-          onCityChange(defaultCity);
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios
-      .get(
-        `${apiUrl}/forecast?q=${encodeURIComponent(
-          defaultCity
-        )}&lang=pt_br&appid=${apiKey}&units=metric&ctn=40`
-      )
-      .then((response) => {
-        if (response.data) {
-          console.log(response.data);
-          setGraphicInfo(response.data);
-          onCityChange(defaultCity);
-        } else {
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    handleSearchClick();
   }, []);
 
   return (
