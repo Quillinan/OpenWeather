@@ -80,13 +80,9 @@ const Panel: React.FC<PanelProps> = () => {
   };
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentDateTime(new Date());
-    }, 1000);
+    setCurrentDateTime(new Date());
     getColor(cityInfo?.weather[0].main);
-
-    return () => clearInterval(intervalId);
-  }, [getColor]);
+  }, []);
 
   return (
     <StyledPanel>
