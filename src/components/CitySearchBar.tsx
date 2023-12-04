@@ -89,7 +89,7 @@ const StyledInput = styled.input`
 
   color: #424243;
   font-family: Montserrat;
-  font-size: 22px;
+  font-size: 1.5vw;
   font-style: normal;
   font-weight: 500;
 `;

@@ -97,7 +97,7 @@ const Panel: React.FC<PanelProps> = () => {
 
       <TemperatureSection>
         <TemperatureLabel color={color}>
-          <FaCircle size={70} color={color} />
+          <FaCircle size={`${5}vw`} color={color} />
           <p className="number">
             {temperature !== undefined
               ? `${temperature.toFixed(2)}°${far ? "F" : "C"}`
@@ -133,7 +133,7 @@ const StyledPanel = styled.div`
   h1 {
     color: #222;
     font-family: Poppins;
-    font-size: 62px;
+    font-size: 3.5vw;
     font-weight: 600;
     width: min-content;
   }
@@ -144,12 +144,9 @@ const TitleLabel = styled.div`
   flex-direction: row;
 
   img {
-    width: 120px;
-    height: 120px;
-  }
-  h1 {
-    font-size: 62px;
-    font-weight: 600;
+    width: 20vw;
+    max-width: 120px;
+    height: auto;
   }
 `;
 
@@ -158,7 +155,7 @@ const TemperatureSection = styled.div`
   flex-direction: column;
   align-items: center;
   .text {
-    font-size: 32px;
+    font-size: 2.5vw;
 
     text-align-last: center;
     width: 70%;
@@ -176,13 +173,13 @@ const TemperatureLabel = styled.div`
 
   .number {
     color: ${(props) => props.color};
-    font-size: 150px;
+    font-size: 7vw;
     font-weight: 300;
   }
 
   .unit {
     color: ${(props) => props.color};
-    font-size: 120px;
+    font-size: 7vw;
     font-style: normal;
     font-weight: 300;
   }

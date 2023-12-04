@@ -69,13 +69,13 @@ const TitleLabel = styled.div`
 
   .p-select {
     color: #222;
-    font-size: 48px;
+    font-size: 2.5vw;
     cursor: pointer;
   }
 
   .p-unselect {
     color: #c8c8c8;
-    font-size: 48px;
+    font-size: 2.5vw;
     font-style: normal;
     cursor: pointer;
   }
@@ -87,7 +87,7 @@ const CityLabel = styled.div`
 
   .cityName {
     color: #222;
-    font-size: 150px;
+    font-size: 8.5vw;
   }
 `;
 

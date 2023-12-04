@@ -62,7 +62,7 @@ const StyledTodayInfos = styled.div`
 
   .noDarkMode {
     color: #afadad;
-    font-size: 24px;
+    font-size: 1.75vw;
     font-style: italic;
     font-weight: 400;
   }
@@ -93,13 +93,13 @@ const Box = styled.div`
 
   .title {
     color: #fff;
-    font-size: 22px;
+    font-size: 1.75vw;
     font-weight: 700;
   }
 
   .info {
     color: #fff;
-    font-size: 48px;
+    font-size: 2.5vw;
     font-style: normal;
     font-weight: 600;
     margin-top: 2%;
