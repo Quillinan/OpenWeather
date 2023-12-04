@@ -59,14 +59,12 @@ export default TodayInfos;
 const StyledTodayInfos = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 50px;
 
   .noDarkMode {
     color: #afadad;
     font-size: 24px;
     font-style: italic;
     font-weight: 400;
-    line-height: 48px;
   }
 `;
 
@@ -79,13 +77,14 @@ const Line = styled.div`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 45px;
+  padding: 5%;
   justify-content: center;
   align-items: flex-start;
-  gap: 13px;
 
-  width: 500px;
-  height: 180px;
+  height: 80%;
+  width: 40%;
+  max-height: 180px;
+  max-width: 500px;
 
   border-radius: 32px;
   background: linear-gradient(117deg, #4d4494 22.83%, #4f43ae 90.03%);
@@ -96,7 +95,6 @@ const Box = styled.div`
     color: #fff;
     font-size: 22px;
     font-weight: 700;
-    line-height: 24px;
   }
 
   .info {
@@ -104,6 +102,6 @@ const Box = styled.div`
     font-size: 48px;
     font-style: normal;
     font-weight: 600;
-    line-height: 36px;
+    margin-top: 2%;
   }
 `;

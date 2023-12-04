@@ -60,6 +60,7 @@ const Panel: React.FC<PanelProps> = () => {
   };
 
   const getColor = (main: string | undefined): void => {
+    console.log(main);
     if (main === "Clear") {
       setColor("#FFA500");
     } else if (main === "Clouds") {
@@ -74,15 +75,21 @@ const Panel: React.FC<PanelProps> = () => {
       setColor("#246df3");
     } else if (main === "Mist") {
       setColor("#737073");
-    } else {
-      setColor("#ec6e4c");
     }
   };
 
   useEffect(() => {
     setCurrentDateTime(new Date());
-    getColor(cityInfo?.weather[0].main);
-  }, []);
+
+    if (
+      cityInfo &&
+      cityInfo.weather &&
+      cityInfo.weather[0] &&
+      cityInfo.weather[0].main
+    ) {
+      getColor(cityInfo.weather[0].main);
+    }
+  }, [cityInfo]);
 
   return (
     <StyledPanel>
@@ -122,31 +129,25 @@ const Panel: React.FC<PanelProps> = () => {
 
 const StyledPanel = styled.div`
   flex: 1;
-  padding: 55px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
+  padding: 2.5%;
+  place-content: space-evenly;
 
   h1 {
     color: #222;
     font-family: Poppins;
     font-size: 62px;
-    font-style: normal;
     font-weight: 600;
-    line-height: 48px;
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 20px;
+    width: min-content;
   }
 `;
 
 const TitleLabel = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 15px;
+
   img {
     width: 120px;
     height: 120px;
@@ -160,7 +161,6 @@ const TitleLabel = styled.div`
 const TemperatureSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 50px;
   align-items: center;
   .text {
     font-size: 32px;
@@ -181,12 +181,8 @@ const TemperatureLabel = styled.div`
 
   .number {
     color: ${(props) => props.color};
-    font-family: "Poppins";
     font-size: 150px;
-    font-style: normal;
     font-weight: 300;
-    line-height: 48px;
-    margin-left: 25px;
   }
 
   .unit {
@@ -194,7 +190,6 @@ const TemperatureLabel = styled.div`
     font-size: 120px;
     font-style: normal;
     font-weight: 300;
-    line-height: 48px;
   }
 `;
 

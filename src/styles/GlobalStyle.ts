@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 48px;
   }
 
   body.dark-mode {

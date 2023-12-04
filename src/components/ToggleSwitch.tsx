@@ -33,7 +33,7 @@ const ToggleSwitchStyled = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  margin-bottom: 5%;
 `;
 
 const ToggleSwitchLabel = styled.label`

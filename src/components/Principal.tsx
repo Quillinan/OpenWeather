@@ -19,12 +19,14 @@ const Principal: React.FC<PrincipalProps> = () => {
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("today")}>
+          onClick={() => handleTabClick("today")}
+        >
           Hoje
         </p>
         <p
           className={!showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("nextDays")}>
+          onClick={() => handleTabClick("nextDays")}
+        >
           Próximos dias
         </p>
       </TitleLabel>
@@ -49,11 +51,11 @@ const Principal: React.FC<PrincipalProps> = () => {
 const StyledPrincipal = styled.div`
   flex: 2;
   background-color: #efefef;
-  padding: 50px;
-
+  padding: 2.5% 5%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 5%;
+  place-content: space-evenly;
 
   .noDarkMode {
     color: #222;
@@ -63,8 +65,7 @@ const StyledPrincipal = styled.div`
 const TitleLabel = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 72px;
-  margin-top: 10px;
+  gap: 2%;
 
   .p-select {
     color: #222;
@@ -83,24 +84,17 @@ const TitleLabel = styled.div`
 const CityLabel = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 50px;
 
   .cityName {
     color: #222;
     font-size: 150px;
-    line-height: 100px;
   }
 `;
 
 const Footer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  gap: 5px;
-
-  position: absolute;
-  bottom: 20px;
+  gap: 0.5%;
 
   .enterprise {
     color: #96a7f2;

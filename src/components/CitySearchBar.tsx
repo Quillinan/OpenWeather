@@ -92,7 +92,6 @@ const StyledInput = styled.input`
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px;
 `;
 
 export default CitySearchBar;
