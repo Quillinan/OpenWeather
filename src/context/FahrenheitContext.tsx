@@ -39,5 +39,7 @@ export const convertCtoF = (value: number | undefined): number | undefined => {
   if (value === undefined) {
     return undefined;
   }
-  return (value * 9) / 5 + 32;
+
+  const convertedValue = (value * 9) / 5 + 32;
+  return parseFloat(convertedValue.toFixed(2));
 };

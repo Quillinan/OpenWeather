@@ -21,17 +21,18 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   const data = graphicInfo?.list.map((item) => {
     const date = new Date(item.dt * 1000);
     const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const dayOfWeek = new Intl.DateTimeFormat("pt-BR", {
+      weekday: "short",
+    }).format(date);
 
-    if (far) {
-      return {
-        dia: day,
-        temperatura: convertCtoF(item.main.temp),
-      };
-    }
+    const formattedDate = `${day}/${month}(${dayOfWeek})`;
+
+    const temperatureValue = far ? convertCtoF(item.main.temp) : item.main.temp;
 
     return {
-      dia: day,
-      temperatura: item.main.temp,
+      day: formattedDate,
+      temperature: temperatureValue,
     };
   });
 
@@ -43,13 +44,19 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
           margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="dia" />
+          <XAxis dataKey="day" />
           <YAxis />
-          <Tooltip />
+          <Tooltip
+            labelFormatter={(value) => `Data: ${value}`}
+            formatter={(value) => [
+              `${value} °${far ? "F" : "C"}`,
+              "Temperatura",
+            ]}
+          />
           <Legend />
           <Line
             type="monotone"
-            dataKey="temperatura"
+            dataKey="temperature"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
