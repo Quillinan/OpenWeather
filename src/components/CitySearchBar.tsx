@@ -67,15 +67,25 @@ const StyledLabel = styled.div`
   width: 80%;
   padding: 10px;
   gap: 10px;
+  max-height: 60px;
 
   border-radius: 24px;
   background: #ededef;
   box-shadow: 0px 24px 48px 0px rgba(49, 79, 124, 0.08);
 
   img {
-    width: 36.697px;
-    height: 40px;
+    width: 3vw;
+    height: 3vw;
     cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    height: 10vh;
+    max-height: 5vh;
+    img {
+      width: 4vh;
+      height: 4vh;
+    }
   }
 `;
 
@@ -92,6 +102,10 @@ const StyledInput = styled.input`
   font-size: 1.5vw;
   font-style: normal;
   font-weight: 500;
+
+  @media (max-width: 600px) {
+    font-size: 2vh;
+  }
 `;
 
 export default CitySearchBar;

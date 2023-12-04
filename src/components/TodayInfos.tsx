@@ -66,12 +66,24 @@ const StyledTodayInfos = styled.div`
     font-style: italic;
     font-weight: 400;
   }
+
+  @media (max-width: 600px) {
+    .noDarkMode {
+      font-size: 3vh;
+      margin-top: 2vh;
+    }
+  }
 `;
 
 const Line = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Box = styled.div`
@@ -103,5 +115,18 @@ const Box = styled.div`
     font-style: normal;
     font-weight: 600;
     margin-top: 2%;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    align-items: center;
+    margin-top: 2vh;
+    border-radius: 16px;
+    .title {
+      font-size: 3vw;
+    }
+    .info {
+      font-size: 5vw;
+    }
   }
 `;

@@ -97,7 +97,7 @@ const Panel: React.FC<PanelProps> = () => {
 
       <TemperatureSection>
         <TemperatureLabel color={color}>
-          <FaCircle size={`${5}vw`} color={color} />
+          <StyledFaCircle color={color} />
           <p className="number">
             {temperature !== undefined
               ? `${temperature.toFixed(2)}°${far ? "F" : "C"}`
@@ -130,24 +130,36 @@ const StyledPanel = styled.div`
   padding: 1%;
   place-content: space-evenly;
 
+  img {
+    width: 7vw;
+    max-width: 120px;
+    height: auto;
+  }
+
   h1 {
     color: #222;
     font-family: Poppins;
-    font-size: 3.5vw;
+    font-size: 4vw;
     font-weight: 600;
     width: min-content;
+  }
+
+  @media (max-width: 600px) {
+    height: 100vh;
+    flex: none;
+
+    h1 {
+      font-size: 5vh;
+    }
+    img {
+      width: 10vh;
+    }
   }
 `;
 
 const TitleLabel = styled.div`
   display: flex;
   flex-direction: row;
-
-  img {
-    width: 20vw;
-    max-width: 120px;
-    height: auto;
-  }
 `;
 
 const TemperatureSection = styled.div`
@@ -155,11 +167,25 @@ const TemperatureSection = styled.div`
   flex-direction: column;
   align-items: center;
   .text {
-    font-size: 2.5vw;
-
-    text-align-last: center;
+    text-align: center;
+    font-size: 2vw;
     width: 70%;
     border-bottom: 5px solid #ededed;
+  }
+  @media (max-width: 600px) {
+    .text {
+      font-size: 2.5vh;
+    }
+  }
+`;
+
+const StyledFaCircle = styled(FaCircle)`
+  width: 3.5vw;
+  height: 3.5vw;
+
+  @media (max-width: 600px) {
+    width: 5vh;
+    height: 5vh;
   }
 `;
 
@@ -167,21 +193,29 @@ const TemperatureLabel = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 25px;
 
   max-height: 150px;
 
   .number {
     color: ${(props) => props.color};
-    font-size: 7vw;
+    font-size: 6vw;
     font-weight: 300;
   }
 
   .unit {
     color: ${(props) => props.color};
-    font-size: 7vw;
+    font-size: 6vw;
     font-style: normal;
     font-weight: 300;
+  }
+
+  @media (max-width: 600px) {
+    .number {
+      font-size: 10vh;
+    }
+    .unit {
+      font-size: 10vh;
+    }
   }
 `;
 

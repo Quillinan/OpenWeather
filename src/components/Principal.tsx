@@ -19,14 +19,12 @@ const Principal: React.FC<PrincipalProps> = () => {
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("today")}
-        >
+          onClick={() => handleTabClick("today")}>
           Hoje
         </p>
         <p
           className={!showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("nextDays")}
-        >
+          onClick={() => handleTabClick("nextDays")}>
           Próximos dias
         </p>
       </TitleLabel>
@@ -51,14 +49,20 @@ const Principal: React.FC<PrincipalProps> = () => {
 const StyledPrincipal = styled.div`
   flex: 2;
   background-color: #efefef;
-  padding: 1% 2%;
+  padding: 2% 2%;
   display: flex;
   flex-direction: column;
-  gap: 5%;
-  place-content: space-evenly;
+  place-content: space-between;
 
   .noDarkMode {
     color: #222;
+  }
+
+  @media (max-width: 600px) {
+    height: 100vh;
+    flex: none;
+    text-align: center;
+    padding: 5% 10%;
   }
 `;
 
@@ -79,6 +83,16 @@ const TitleLabel = styled.div`
     font-style: normal;
     cursor: pointer;
   }
+
+  @media (max-width: 600px) {
+    gap: 6vw;
+    .p-select {
+      font-size: 4vh;
+    }
+    .p-unselect {
+      font-size: 4vh;
+    }
+  }
 `;
 
 const CityLabel = styled.div`
@@ -87,7 +101,13 @@ const CityLabel = styled.div`
 
   .cityName {
     color: #222;
-    font-size: 8.5vw;
+    font-size: 7vw;
+  }
+
+  @media (max-width: 600px) {
+    .cityName {
+      font-size: 8.5vh;
+    }
   }
 `;
 
@@ -95,9 +115,14 @@ const Footer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5%;
+  margin-top: 2vh;
 
   .enterprise {
     color: #96a7f2;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: center;
   }
 `;
 

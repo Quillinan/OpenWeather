@@ -18,6 +18,12 @@ const GlobalStyle = createGlobalStyle`
       color: #fff;
     }
   }
+
+  @media (max-width: 600px) {
+    p{
+      font-size: 3.5vw;
+    }
+  }
 `;
 
 export default GlobalStyle;

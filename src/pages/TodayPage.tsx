@@ -19,6 +19,12 @@ const PageContainer = styled.div`
   box-sizing: border-box;
   overflow-x: auto;
   overflow-y: hidden;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
 `;
 
 export default TodayPage;
