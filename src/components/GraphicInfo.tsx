@@ -10,15 +10,24 @@ import {
   Legend,
 } from "recharts";
 import { useCityInfo } from "../context/CityInfoContext";
+import { convertCtoF, useFahrenheit } from "../context/FahrenheitContext";
 
 interface GraphicInfoProps {}
 
 const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   const { graphicInfo } = useCityInfo();
+  const { far } = useFahrenheit();
 
   const data = graphicInfo?.list.map((item) => {
     const date = new Date(item.dt * 1000);
     const day = String(date.getDate()).padStart(2, "0");
+
+    if (far) {
+      return {
+        dia: day,
+        temperatura: convertCtoF(item.main.temp),
+      };
+    }
 
     return {
       dia: day,

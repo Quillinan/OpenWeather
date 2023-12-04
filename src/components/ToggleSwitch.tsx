@@ -24,7 +24,7 @@ const ToggleSwitch: React.FC<ToggleLineProps> = ({ label, onToggle }) => {
         />
         <ToggleSwitchSlider className="slider" />
       </ToggleSwitchLabel>
-      <p>{label}</p>
+      <p className="info">{label}</p>
     </ToggleSwitchStyled>
   );
 };
@@ -34,6 +34,10 @@ const ToggleSwitchStyled = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: 5%;
+
+  p {
+    margin-left: 10px;
+  }
 `;
 
 const ToggleSwitchLabel = styled.label`
