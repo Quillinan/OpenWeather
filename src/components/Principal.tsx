@@ -51,7 +51,7 @@ const Principal: React.FC<PrincipalProps> = () => {
 const StyledPrincipal = styled.div`
   flex: 2;
   background-color: #efefef;
-  padding: 2.5% 5%;
+  padding: 1% 2%;
   display: flex;
   flex-direction: column;
   gap: 5%;

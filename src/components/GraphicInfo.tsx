@@ -8,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import { useCityInfo } from "../context/CityInfoContext";
 import { convertCtoF, useFahrenheit } from "../context/FahrenheitContext";
@@ -36,32 +37,27 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   });
 
   return (
-    <GraphicContainer>
-      <LineChart
-        width={1000}
-        height={500}
-        data={data}
-        margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="dia" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="temperatura"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-    </GraphicContainer>
+    <div style={{ width: "100%", height: "400px" }}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={data}
+          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="dia" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="temperatura"
+            stroke="#8884d8"
+            activeDot={{ r: 8 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
-
-const GraphicContainer = styled.div`
-  margin-top: 10px;
-  width: 100%;
-`;
 
 export default GraphicInfo;

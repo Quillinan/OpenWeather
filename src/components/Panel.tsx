@@ -18,7 +18,7 @@ const Panel: React.FC<PanelProps> = () => {
     : cityInfo?.main.temp;
   const [toggleUnit, setToggleUnit] = useState("°F");
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
-  const [color, setColor] = useState<string>("#ec6e4c");
+  const [color, setColor] = useState<string>();
 
   const handleCityChange = (city: string) => {
     console.log(`Cidade selecionada: ${city}`);
@@ -60,22 +60,17 @@ const Panel: React.FC<PanelProps> = () => {
   };
 
   const getColor = (main: string | undefined): void => {
-    console.log(main);
-    if (main === "Clear") {
-      setColor("#FFA500");
-    } else if (main === "Clouds") {
-      setColor("#444244");
-    } else if (main === "Rain") {
-      setColor("#0619e2");
-    } else if (main === "Snow") {
-      setColor("#737073");
-    } else if (main === "Thunderstorm") {
-      setColor("#5d0079");
-    } else if (main === "Drizzle") {
-      setColor("#246df3");
-    } else if (main === "Mist") {
-      setColor("#737073");
-    }
+    const colorMap: { [key: string]: string } = {
+      Clear: "#FFA500",
+      Clouds: "#444244",
+      Rain: "#0619e2",
+      Snow: "#737073",
+      Thunderstorm: "#5d0079",
+      Drizzle: "#246df3",
+      Mist: "#737073",
+    };
+
+    setColor(main ? colorMap[main] : "#defaultColor");
   };
 
   useEffect(() => {
@@ -132,7 +127,7 @@ const StyledPanel = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5%;
+  padding: 1%;
   place-content: space-evenly;
 
   h1 {
