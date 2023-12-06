@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   p {
     color: #222;
     font-family: "Poppins";
-    font-size: 1.5vw;
+    font-size: 1.25vw;
     font-style: normal;
     font-weight: 400;
   }

@@ -188,7 +188,9 @@ const TemperatureSection = styled.div`
   .text {
     text-align: center;
     font-size: 1.5vw;
-    width: 70%;
+    margin-top: 7vh;
+    height: 8vh;
+    width: 100%;
     border-bottom: 5px solid #ededed;
   }
   @media (max-width: 600px) {
