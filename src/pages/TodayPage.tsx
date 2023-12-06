@@ -17,8 +17,6 @@ const PageContainer = styled.div`
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
-  overflow-x: auto;
-  overflow-y: hidden;
 
   @media (max-width: 600px) {
     flex-direction: column;

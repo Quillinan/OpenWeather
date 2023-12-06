@@ -46,9 +46,9 @@ const TodayInfos: React.FC<TodayInfosProps> = () => {
 
       {cityInfo?.main?.temp_min !== undefined &&
       cityInfo?.main?.temp_min > 17 ? (
-        <p className="noDarkMode">Não, você não deve levar um casaquinho!</p>
+        <p className="phrase">Não, você não deve levar um casaquinho!</p>
       ) : (
-        <p className="noDarkMode">Você deve levar um casaquinho!</p>
+        <p className="phrase">Você deve levar um casaquinho!</p>
       )}
     </StyledTodayInfos>
   );
@@ -60,16 +60,17 @@ const StyledTodayInfos = styled.div`
   display: flex;
   flex-direction: column;
 
-  .noDarkMode {
+  .phrase {
     color: #afadad;
-    font-size: 1.75vw;
+    font-size: 1.5vw;
     font-style: italic;
     font-weight: 400;
+    margin-top: 5%;
   }
 
   @media (max-width: 600px) {
-    .noDarkMode {
-      font-size: 3vh;
+    .phrase {
+      font-size: 2vh;
       margin-top: 2vh;
     }
   }
@@ -89,7 +90,7 @@ const Line = styled.div`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 5%;
+  padding: 4%;
   justify-content: center;
   align-items: flex-start;
 
@@ -105,13 +106,13 @@ const Box = styled.div`
 
   .title {
     color: #fff;
-    font-size: 1.75vw;
+    font-size: 1.5vw;
     font-weight: 700;
   }
 
   .info {
     color: #fff;
-    font-size: 2.5vw;
+    font-size: 2vw;
     font-style: normal;
     font-weight: 600;
     margin-top: 2%;
@@ -123,10 +124,10 @@ const Box = styled.div`
     margin-top: 2vh;
     border-radius: 16px;
     .title {
-      font-size: 3vw;
+      font-size: 2vh;
     }
     .info {
-      font-size: 5vw;
+      font-size: 4vh;
     }
   }
 `;

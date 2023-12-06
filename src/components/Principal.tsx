@@ -40,7 +40,13 @@ const Principal: React.FC<PrincipalProps> = () => {
 
       <Footer>
         <p className="noDarkMode">Dados fornecidos pela</p>
-        <p className="enterprise">Open Weather API</p>
+        <a
+          className="enterprise"
+          href="https://openweathermap.org/api"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open Weather API
+        </a>
       </Footer>
     </StyledPrincipal>
   );
@@ -49,10 +55,10 @@ const Principal: React.FC<PrincipalProps> = () => {
 const StyledPrincipal = styled.div`
   flex: 2;
   background-color: #efefef;
-  padding: 2% 2%;
+  padding: 2% 2% 5%;
   display: flex;
   flex-direction: column;
-  place-content: space-between;
+  place-content: space-around;
 
   .noDarkMode {
     color: #222;
@@ -73,13 +79,13 @@ const TitleLabel = styled.div`
 
   .p-select {
     color: #222;
-    font-size: 2.5vw;
+    font-size: 2vw;
     cursor: pointer;
   }
 
   .p-unselect {
     color: #c8c8c8;
-    font-size: 2.5vw;
+    font-size: 2vw;
     font-style: normal;
     cursor: pointer;
   }
@@ -101,7 +107,7 @@ const CityLabel = styled.div`
 
   .cityName {
     color: #222;
-    font-size: 7vw;
+    font-size: 6.75vw;
   }
 
   @media (max-width: 600px) {
@@ -115,10 +121,21 @@ const Footer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5%;
-  margin-top: 2vh;
 
   .enterprise {
+    text-decoration: none;
     color: #96a7f2;
+    cursor: pointer;
+    font-family: "Poppins";
+    font-size: 1.5vw;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  @media (min-width: 601px) {
+    position: absolute;
+    bottom: 2%;
+    width: 50%;
   }
 
   @media (max-width: 600px) {

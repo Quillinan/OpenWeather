@@ -49,7 +49,12 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
 
   return (
     <StyledLabel>
-      <img src="/lupeIcon.svg" alt="Lupa" onClick={handleSearchClick} />
+      <img
+        className="lupe"
+        src="/lupeIcon.svg"
+        alt="Lupa"
+        onClick={handleSearchClick}
+      />
       <StyledInput
         name="city"
         placeholder="Procure por uma cidade"
@@ -73,9 +78,9 @@ const StyledLabel = styled.div`
   background: #ededef;
   box-shadow: 0px 24px 48px 0px rgba(49, 79, 124, 0.08);
 
-  img {
-    width: 3vw;
-    height: 3vw;
+  .lupe {
+    width: 2vw;
+    height: 2vw;
     cursor: pointer;
   }
 
@@ -99,7 +104,7 @@ const StyledInput = styled.input`
 
   color: #424243;
   font-family: Montserrat;
-  font-size: 1.5vw;
+  font-size: 1vw;
   font-style: normal;
   font-weight: 500;
 

@@ -127,8 +127,8 @@ const StyledPanel = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1%;
-  place-content: space-evenly;
+  padding: 1% 1% 5%;
+  place-content: space-around;
 
   img {
     width: 7vw;
@@ -139,9 +139,16 @@ const StyledPanel = styled.div`
   h1 {
     color: #222;
     font-family: Poppins;
-    font-size: 4vw;
+    font-size: 3.5vw;
     font-weight: 600;
     width: min-content;
+  }
+
+  @media (min-width: 601px) {
+    .footer {
+      position: absolute;
+      bottom: 2%;
+    }
   }
 
   @media (max-width: 600px) {
@@ -168,7 +175,7 @@ const TemperatureSection = styled.div`
   align-items: center;
   .text {
     text-align: center;
-    font-size: 2vw;
+    font-size: 1.75vw;
     width: 70%;
     border-bottom: 5px solid #ededed;
   }
@@ -204,7 +211,7 @@ const TemperatureLabel = styled.div`
 
   .unit {
     color: ${(props) => props.color};
-    font-size: 6vw;
+    font-size: 5vw;
     font-style: normal;
     font-weight: 300;
   }
