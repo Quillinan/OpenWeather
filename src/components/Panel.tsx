@@ -41,9 +41,12 @@ const Panel: React.FC<PanelProps> = () => {
     document.body.classList.toggle("dark-mode", !isDarkMode);
   };
 
+  const formatWeather = (weather: string | undefined): string => {
+    return weather ? weather.charAt(0).toUpperCase() + weather.slice(1) : "";
+  };
+
   const formatDate = (date: Date) => {
     const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
       day: "2-digit",
       month: "2-digit",
       year: "numeric",
@@ -53,10 +56,17 @@ const Panel: React.FC<PanelProps> = () => {
 
   const formatTime = (date: Date) => {
     const options: Intl.DateTimeFormatOptions = {
+      weekday: "long",
       hour: "2-digit",
       minute: "2-digit",
     };
-    return date.toLocaleTimeString("pt-BR", options);
+
+    const formattedTime = date.toLocaleTimeString("pt-BR", options);
+
+    const capitalizedWeekday =
+      formattedTime.charAt(0).toUpperCase() + formattedTime.slice(1);
+
+    return capitalizedWeekday;
   };
 
   const getColor = (main: string | undefined): void => {
@@ -104,7 +114,9 @@ const Panel: React.FC<PanelProps> = () => {
               : "N/A"}
           </p>
         </TemperatureLabel>
-        <p className="text">{cityInfo?.weather[0].description}</p>
+        <p className="text">
+          {formatWeather(cityInfo?.weather[0].description)}
+        </p>
       </TemperatureSection>
 
       <DateSection>
@@ -187,12 +199,14 @@ const TemperatureSection = styled.div`
 `;
 
 const StyledFaCircle = styled(FaCircle)`
-  width: 3.5vw;
-  height: 3.5vw;
+  width: 3vw;
+  height: 3vw;
+  margin-right: 1vw;
 
   @media (max-width: 600px) {
-    width: 5vh;
-    height: 5vh;
+    width: 4.5vh;
+    height: 4.5vh;
+    margin-right: 1vh;
   }
 `;
 

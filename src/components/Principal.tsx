@@ -140,6 +140,9 @@ const Footer = styled.div`
 
   @media (max-width: 600px) {
     justify-content: center;
+    .enterprise {
+      font-size: 2vh;
+    }
   }
 `;
 
