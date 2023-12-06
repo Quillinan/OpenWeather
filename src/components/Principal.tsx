@@ -75,17 +75,17 @@ const StyledPrincipal = styled.div`
 const TitleLabel = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 2%;
+  gap: 6%;
 
   .p-select {
     color: #222;
-    font-size: 2vw;
+    font-size: 2.5vw;
     cursor: pointer;
   }
 
   .p-unselect {
     color: #c8c8c8;
-    font-size: 2vw;
+    font-size: 2.5vw;
     font-style: normal;
     cursor: pointer;
   }

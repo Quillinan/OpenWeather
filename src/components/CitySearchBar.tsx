@@ -91,6 +91,10 @@ const StyledLabel = styled.div`
       width: 4vh;
       height: 4vh;
     }
+    .lupe {
+      width: 4vh;
+      height: 4vh;
+    }
   }
 `;
 

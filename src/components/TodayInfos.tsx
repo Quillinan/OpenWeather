@@ -94,7 +94,7 @@ const Box = styled.div`
   justify-content: center;
   align-items: flex-start;
 
-  height: 80%;
+  height: 90%;
   width: 40%;
   max-height: 180px;
   max-width: 500px;
