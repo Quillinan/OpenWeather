@@ -66,7 +66,7 @@ interface WeatherItem {
   wind: {};
 }
 
-interface GraphicInfo {
+export interface GraphicInfo {
   city: CityDetails;
   cnt: number;
   cod: string;
@@ -93,8 +93,7 @@ export const CityInfoProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <CityInfoContext.Provider
-      value={{ cityInfo, setCityInfo, graphicInfo, setGraphicInfo }}
-    >
+      value={{ cityInfo, setCityInfo, graphicInfo, setGraphicInfo }}>
       {children}
     </CityInfoContext.Provider>
   );
