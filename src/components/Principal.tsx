@@ -19,12 +19,14 @@ const Principal: React.FC<PrincipalProps> = () => {
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("today")}>
+          onClick={() => handleTabClick("today")}
+        >
           Hoje
         </p>
         <p
           className={!showTodayInfos ? "p-select" : "p-unselect"}
-          onClick={() => handleTabClick("nextDays")}>
+          onClick={() => handleTabClick("nextDays")}
+        >
           Próximos dias
         </p>
       </TitleLabel>
@@ -44,7 +46,8 @@ const Principal: React.FC<PrincipalProps> = () => {
           className="enterprise"
           href="https://openweathermap.org/api"
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           Open Weather API
         </a>
       </Footer>
@@ -121,6 +124,7 @@ const Footer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5%;
+  align-items: center;
 
   .enterprise {
     text-decoration: none;
