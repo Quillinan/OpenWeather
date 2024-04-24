@@ -12,11 +12,15 @@ const GlobalStyle = createGlobalStyle`
   body.dark-mode {
     background-color: #222;
     h1 {
-      color: #fff;
+      color: #bababa;
     }
     p {
       color: #fff;
     }
+  }
+
+  .principal-no-dark-mode {
+  background-color: #efefef
   }
 
   @media (max-width: 600px) {

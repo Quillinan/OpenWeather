@@ -39,7 +39,7 @@ const Panel: React.FC<PanelProps> = () => {
 
   const toggleDarkMode = () => {
     setDarkMode((prev) => !prev);
-    document.body.classList.toggle("panel-dark-mode", !darkMode);
+    document.body.classList.toggle("dark-mode", !darkMode);
   };
 
   const formatWeather = (weather: string | undefined): string => {

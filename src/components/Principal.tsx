@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TodayInfos from "./TodayInfos";
 import GraphicInfo from "./GraphicInfo";
 import { useCityInfo } from "../context/CityInfoContext";
+import { useDarkMode } from "../context/DarkModeContext";
 
 interface PrincipalProps {}
+
+interface StyledPrincipalProps {
+  dark: boolean;
+}
 
 const Principal: React.FC<PrincipalProps> = () => {
   const [showTodayInfos, setShowTodayInfos] = useState(true);
   const { cityInfo } = useCityInfo();
+  const { darkMode } = useDarkMode();
 
   const handleTabClick = (tab: "today" | "nextDays") => {
     setShowTodayInfos(tab === "today");
   };
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [darkMode]);
+
   return (
-    <StyledPrincipal>
+    <StyledPrincipal dark={darkMode}>
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
@@ -33,7 +47,7 @@ const Principal: React.FC<PrincipalProps> = () => {
 
       <CityLabel>
         <p className="cityName">{cityInfo?.name}</p>
-        <p className="noDarkMode">
+        <p>
           Lat: {cityInfo?.coord.lat} Long: {cityInfo?.coord.lon}
         </p>
       </CityLabel>
@@ -41,7 +55,7 @@ const Principal: React.FC<PrincipalProps> = () => {
       {showTodayInfos ? <TodayInfos /> : <GraphicInfo />}
 
       <Footer>
-        <p className="noDarkMode">Dados fornecidos pela</p>
+        <p>Dados fornecidos pela</p>
         <a
           className="enterprise"
           href="https://openweathermap.org/api"
@@ -55,17 +69,13 @@ const Principal: React.FC<PrincipalProps> = () => {
   );
 };
 
-const StyledPrincipal = styled.div`
+const StyledPrincipal = styled.div<StyledPrincipalProps>`
   flex: 2;
-  background-color: #efefef;
   padding: 2% 2% 5%;
   display: flex;
   flex-direction: column;
   place-content: space-around;
-
-  .noDarkMode {
-    color: #222;
-  }
+  background-color: ${(props) => (!props.dark ? "#efefef" : "#333")};
 
   @media (max-width: 600px) {
     height: 100vh;
@@ -81,7 +91,6 @@ const TitleLabel = styled.div`
   gap: 6%;
 
   .p-select {
-    color: #222;
     font-size: 2.5vw;
     cursor: pointer;
   }
@@ -109,7 +118,6 @@ const CityLabel = styled.div`
   flex-direction: column;
 
   .cityName {
-    color: #222;
     font-size: 6.75vw;
   }
 
