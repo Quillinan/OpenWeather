@@ -26,7 +26,6 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
 
     const weatherResponse = await getWeather(cityName);
     if (weatherResponse) {
-      console.log(weatherResponse);
       setCityInfo(weatherResponse);
       onCityChange(formData.city);
     } else {
@@ -35,7 +34,6 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
 
     const forecastResponse = await getForecast(cityName);
     if (forecastResponse) {
-      console.log(forecastResponse);
       setGraphicInfo(forecastResponse);
       onCityChange(formData.city);
     } else {
