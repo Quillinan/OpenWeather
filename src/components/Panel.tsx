@@ -5,12 +5,13 @@ import ToggleSwitch from "./ToggleSwitch";
 import { useCityInfo } from "../context/CityInfoContext";
 import { FaCircle } from "react-icons/fa6";
 import { convertCtoF, useFahrenheit } from "../context/FahrenheitContext";
+import { useDarkMode } from "../context/DarkModeContext";
 
 interface PanelProps {}
 
 const Panel: React.FC<PanelProps> = () => {
   const [isFahrenheit, setIsFahrenheit] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { darkMode, setDarkMode } = useDarkMode();
   const { cityInfo } = useCityInfo();
   const { far, setFar } = useFahrenheit();
   const temperature = far
@@ -37,8 +38,8 @@ const Panel: React.FC<PanelProps> = () => {
   };
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-    document.body.classList.toggle("dark-mode", !isDarkMode);
+    setDarkMode((prev) => !prev);
+    document.body.classList.toggle("panel-dark-mode", !darkMode);
   };
 
   const formatWeather = (weather: string | undefined): string => {
