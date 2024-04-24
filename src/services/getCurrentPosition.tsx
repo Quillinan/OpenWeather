@@ -23,10 +23,6 @@ export const getWeatherAndForecastByCoord = async (): Promise<
       const position = await getCurrentPosition();
       const { latitude, longitude } = position.coords;
 
-      console.log(
-        `Coordenadas do usuário: Latitude ${latitude}, Longitude ${longitude}`
-      );
-
       const weatherResponse = await getWeatherByCoord(latitude, longitude);
       const forecastResponse = await getForecastByCoord(latitude, longitude);
 
