@@ -70,15 +70,15 @@ const Panel: React.FC<PanelProps> = () => {
     return capitalizedWeekday;
   };
 
-  const getColor = (main: string | undefined): void => {
+  const getColor = (main: string | undefined, dark: boolean): void => {
     const colorMap: { [key: string]: string } = {
       Clear: "#FFA500",
-      Clouds: "#444244",
+      Clouds: dark ? "#D3D3D3" : "#444244",
       Rain: "#0619e2",
-      Snow: "#737073",
+      Snow: dark ? "#FFFFFF" : "#737073",
       Thunderstorm: "#5d0079",
       Drizzle: "#246df3",
-      Mist: "#737073",
+      Mist: dark ? "#D3D3D3" : "#737073",
     };
 
     setColor(main ? colorMap[main] : "#defaultColor");
@@ -93,9 +93,9 @@ const Panel: React.FC<PanelProps> = () => {
       cityInfo.weather[0] &&
       cityInfo.weather[0].main
     ) {
-      getColor(cityInfo.weather[0].main);
+      getColor(cityInfo.weather[0].main, darkMode);
     }
-  }, [cityInfo]);
+  }, [cityInfo, darkMode]);
 
   return (
     <StyledPanel>
