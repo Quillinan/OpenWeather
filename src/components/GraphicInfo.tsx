@@ -37,13 +37,21 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   });
 
   return (
-    <div style={{ width: "100%", height: "400px" }}>
+    <div
+      style={{
+        width: "100%",
+        height: "40%",
+        backgroundColor: "#fff",
+        border: "0.1rem solid #e1e0e0",
+        alignSelf: "center",
+      }}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 10 }}
+          margin={{ top: 40, right: 50, left: 10, bottom: 20 }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="100 1" />
           <XAxis dataKey="day" />
           <YAxis />
           <Tooltip
