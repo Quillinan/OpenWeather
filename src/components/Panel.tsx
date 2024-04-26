@@ -74,10 +74,10 @@ const Panel: React.FC<PanelProps> = () => {
     const colorMap: { [key: string]: string } = {
       Clear: "#FFA500",
       Clouds: dark ? "#D3D3D3" : "#444244",
-      Rain: "#0619e2",
+      Rain: dark ? "#87CEEB" : "#0619e2",
       Snow: dark ? "#FFFFFF" : "#737073",
-      Thunderstorm: "#5d0079",
-      Drizzle: "#246df3",
+      Thunderstorm: dark ? "#4f43ae" : "#5d0079",
+      Drizzle: dark ? "#87CEEB" : "#246df3",
       Mist: dark ? "#D3D3D3" : "#737073",
     };
 
