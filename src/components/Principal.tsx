@@ -7,17 +7,18 @@ import { useDarkMode } from "../context/DarkModeContext";
 
 interface PrincipalProps {}
 
-interface StyledPrincipalProps {
-  dark: boolean;
-}
-
 const Principal: React.FC<PrincipalProps> = () => {
   const [showTodayInfos, setShowTodayInfos] = useState(true);
   const { cityInfo } = useCityInfo();
   const { darkMode } = useDarkMode();
+  const [color, setColor] = useState<string>();
 
   const handleTabClick = (tab: "today" | "nextDays") => {
     setShowTodayInfos(tab === "today");
+  };
+
+  const getColor = (dark: boolean): void => {
+    setColor(dark ? "#333" : "#efefef");
   };
 
   useEffect(() => {
@@ -26,10 +27,11 @@ const Principal: React.FC<PrincipalProps> = () => {
     } else {
       document.body.classList.remove("dark-mode");
     }
+    getColor(darkMode);
   }, [darkMode]);
 
   return (
-    <StyledPrincipal dark={darkMode}>
+    <StyledPrincipal color={color}>
       <TitleLabel>
         <p
           className={showTodayInfos ? "p-select" : "p-unselect"}
@@ -69,13 +71,13 @@ const Principal: React.FC<PrincipalProps> = () => {
   );
 };
 
-const StyledPrincipal = styled.div<StyledPrincipalProps>`
+const StyledPrincipal = styled.div`
   flex: 2;
   padding: 2% 2% 5%;
   display: flex;
   flex-direction: column;
   place-content: space-around;
-  background-color: ${(props) => (!props.dark ? "#efefef" : "#333")};
+  background-color: ${(props) => props.color};
 
   @media (max-width: 600px) {
     height: 100vh;
