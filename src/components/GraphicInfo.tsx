@@ -24,9 +24,11 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const dayOfWeek = new Intl.DateTimeFormat("pt-BR", {
       weekday: "short",
-    }).format(date);
+    })
+      .format(date)
+      .slice(0, -1);
 
-    const formattedDate = `${day}/${month}(${dayOfWeek})`;
+    const formattedDate = `${day}/${month} (${dayOfWeek})`;
 
     const temperatureValue = far ? convertCtoF(item.main.temp) : item.main.temp;
 
@@ -40,10 +42,10 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
     <div
       style={{
         width: "100%",
-        height: "40%",
+        height: "50%",
         backgroundColor: "#fff",
         border: "0.1rem solid #e1e0e0",
-        alignSelf: "center",
+        alignSelf: "start",
       }}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -51,16 +53,16 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
           data={data}
           margin={{ top: 40, right: 50, left: 10, bottom: 20 }}
         >
-          <CartesianGrid strokeDasharray="100 1" />
-          <XAxis dataKey="day" />
-          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="day" tick={{ fontSize: "1vw" }} />
+          <YAxis unit={far ? "°F" : "°C"} tick={{ fontSize: "1vw" }} />
           <Tooltip
-            labelFormatter={(value) => `Data: ${value}`}
-            formatter={(value) => [
-              `${value} °${far ? "F" : "C"}`,
-              "Temperatura",
-            ]}
+            labelFormatter={(value) => `${value}`}
+            formatter={(value) => [`${value} °${far ? "F" : "C"}`]}
+            contentStyle={{ fontSize: "1.1vw" }}
+            labelStyle={{ fontSize: "1vw" }}
           />
+
           <Legend />
           <Line
             type="monotone"
