@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   LineChart,
   Line,
@@ -17,6 +17,10 @@ interface GraphicInfoProps {}
 const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   const { graphicInfo } = useCityInfo();
   const { far } = useFahrenheit();
+  const [fontSizeTooltip, setFontSizeTooltip] = useState(["1vw", "1.1vw"]);
+  const [fontSizeAxis, setFontSizeAxis] = useState("1vw");
+
+  const [alignChart, setAlignChart] = useState("start");
 
   const data = graphicInfo?.list.map((item) => {
     const date = new Date(item.dt * 1000);
@@ -34,9 +38,31 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
 
     return {
       day: formattedDate,
-      temperature: temperatureValue,
+      temperatura: temperatureValue,
     };
   });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.matchMedia("(max-width: 600px)").matches) {
+        setFontSizeTooltip(["3vw", "3.3vw"]);
+        setFontSizeAxis("4vw");
+        setAlignChart("center");
+      } else {
+        setFontSizeTooltip(["1vw", "1.1vw"]);
+        setFontSizeAxis("1vw");
+        setAlignChart("start");
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div
@@ -45,7 +71,7 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
         height: "50%",
         backgroundColor: "#fff",
         border: "0.1rem solid #e1e0e0",
-        alignSelf: "start",
+        alignSelf: alignChart,
       }}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -54,15 +80,19 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
           margin={{ top: 40, right: 50, left: 10, bottom: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" tick={{ fontSize: "1vw" }} />
-          <YAxis unit={far ? "°F" : "°C"} tick={{ fontSize: "1vw" }} />
+          <XAxis dataKey="day" tick={{ fontSize: fontSizeAxis }} />
+          <YAxis
+            unit={far ? "°F" : "°C"}
+            tick={{ fontSize: fontSizeAxis, fontFamily: "Poppins" }}
+          />
           <Tooltip
             labelFormatter={(value) => `${value}`}
             formatter={(value) => [`${value} °${far ? "F" : "C"}`]}
             contentStyle={{
-              fontSize: "1.1vw",
-              width: "7vw",
-              height: "6vw",
+              fontSize: fontSizeTooltip[1],
+              fontFamily: "Poppins",
+              width: "max-content",
+              height: "10vh",
               backgroundColor: "#efefef",
               border: "none",
               borderRadius: 5,
@@ -71,13 +101,13 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
               alignItems: "flex-start",
               justifyContent: "space-evenly",
             }}
-            labelStyle={{ fontSize: "1vw", color: "black" }}
+            labelStyle={{ fontSize: fontSizeTooltip[0], color: "black" }}
           />
 
           <Legend />
           <Line
             type="monotone"
-            dataKey="temperature"
+            dataKey="temperatura"
             stroke="#8884d8"
             activeDot={{ r: 8 }}
           />
