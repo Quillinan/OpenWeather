@@ -6,7 +6,6 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
 import { useCityInfo } from "../context/CityInfoContext";
@@ -19,7 +18,12 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   const { far } = useFahrenheit();
   const [fontSizeTooltip, setFontSizeTooltip] = useState(["1vw", "1.1vw"]);
   const [fontSizeAxis, setFontSizeAxis] = useState("1vw");
-
+  const [margin, setMargin] = useState({
+    top: 50,
+    right: 10,
+    left: 50,
+    bottom: 0,
+  });
   const [alignChart, setAlignChart] = useState("start");
 
   const data = graphicInfo?.list.map((item) => {
@@ -48,10 +52,12 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
         setFontSizeTooltip(["3vw", "3.3vw"]);
         setFontSizeAxis("4vw");
         setAlignChart("center");
+        setMargin({ top: 50, right: 5, left: 0, bottom: 0 });
       } else {
         setFontSizeTooltip(["1vw", "1.1vw"]);
-        setFontSizeAxis("1vw");
+        setFontSizeAxis("24px");
         setAlignChart("start");
+        setMargin({ top: 50, right: 10, left: 50, bottom: 0 });
       }
     };
 
@@ -67,23 +73,32 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   return (
     <div
       style={{
-        width: "90%",
+        width: "95%",
         height: "50%",
         backgroundColor: "#fff",
         border: "0.1rem solid #e1e0e0",
         alignSelf: alignChart,
+        overflow: "visible",
       }}
     >
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          data={data}
-          margin={{ top: 40, right: 50, left: 10, bottom: 20 }}
-        >
+      <ResponsiveContainer width="96%" height="90%">
+        <LineChart data={data} margin={margin}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" tick={{ fontSize: fontSizeAxis }} />
+          <XAxis
+            dataKey="day"
+            tick={{
+              fontSize: fontSizeAxis,
+              fill: "grey",
+              textAnchor: "middle",
+            }}
+          />
           <YAxis
             unit={far ? "°F" : "°C"}
-            tick={{ fontSize: fontSizeAxis, fontFamily: "Poppins" }}
+            tick={{
+              fontSize: fontSizeAxis,
+              fontFamily: "Poppins",
+              fill: "grey",
+            }}
           />
           <Tooltip
             labelFormatter={(value) => `${value}`}
@@ -104,12 +119,13 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
             labelStyle={{ fontSize: fontSizeTooltip[0], color: "black" }}
           />
 
-          <Legend />
           <Line
             type="monotone"
             dataKey="temperatura"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
+            stroke="#625eb7"
+            strokeWidth={1.5}
+            dot={{ r: 4 }}
+            activeDot={{ r: 6 }}
           />
         </LineChart>
       </ResponsiveContainer>
