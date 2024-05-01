@@ -41,7 +41,7 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
   return (
     <div
       style={{
-        width: "100%",
+        width: "90%",
         height: "50%",
         backgroundColor: "#fff",
         border: "0.1rem solid #e1e0e0",
@@ -59,8 +59,19 @@ const GraphicInfo: React.FC<GraphicInfoProps> = () => {
           <Tooltip
             labelFormatter={(value) => `${value}`}
             formatter={(value) => [`${value} °${far ? "F" : "C"}`]}
-            contentStyle={{ fontSize: "1.1vw" }}
-            labelStyle={{ fontSize: "1vw" }}
+            contentStyle={{
+              fontSize: "1.1vw",
+              width: "7vw",
+              height: "6vw",
+              backgroundColor: "#efefef",
+              border: "none",
+              borderRadius: 5,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "space-evenly",
+            }}
+            labelStyle={{ fontSize: "1vw", color: "black" }}
           />
 
           <Legend />
