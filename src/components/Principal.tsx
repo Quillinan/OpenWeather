@@ -141,7 +141,7 @@ const Footer = styled.div`
     color: #96a7f2;
     cursor: pointer;
     font-family: "Poppins";
-    font-size: 1.5vw;
+    font-size: 1.25vw;
     font-style: normal;
     font-weight: 400;
   }
@@ -153,9 +153,12 @@ const Footer = styled.div`
   }
 
   @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+
     .enterprise {
-      font-size: 2vh;
+      font-size: 5vw;
     }
   }
 `;
