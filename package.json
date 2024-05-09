@@ -3,11 +3,38 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "electron/main.mjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "electron .",
+    "pack": "electron-builder"
+  },
+  "build": {
+    "productName": "OpenWeather",
+    "appId": "com.example.openweather",
+    "directories": {
+      "output": "releases",
+      "buildResources": "dist"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/main.mjs",
+      "node_modules"
+    ],
+    "nsis": {
+      "uninstallDisplayName": "Uninstall OpenWeather",
+      "license": "LICENSE.txt",
+      "oneClick": "false",
+      "allowToChangeInstallationDirectory": "true"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
   },
   "dependencies": {
     "axios": "^1.6.2",
@@ -25,6 +52,8 @@
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
+    "electron": "^30.0.3",
+    "electron-builder": "^24.13.3",
     "eslint": "^8.53.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.4",
