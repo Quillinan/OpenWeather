@@ -108,7 +108,9 @@ const Panel: React.FC<PanelProps> = () => {
 
       <TemperatureSection>
         <TemperatureLabel color={color}>
-          <StyledFaCircle color={color} />
+          <div>
+            <StyledFaCircle color={color} />
+          </div>
           <p className="number">
             {temperature !== undefined
               ? `${temperature.toFixed(2)}°${far ? "F" : "C"}`
@@ -222,7 +224,7 @@ const TemperatureLabel = styled.div`
 
   .number {
     color: ${(props) => props.color};
-    font-size: 4vw;
+    font-size: 6vw;
     font-weight: 300;
   }
 
