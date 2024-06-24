@@ -49,7 +49,7 @@ const Principal: React.FC<PrincipalProps> = () => {
 
       <CityLabel>
         <p className="cityName">{cityInfo?.name}</p>
-        <p>
+        <p className="cityCoord">
           Lat: {cityInfo?.coord.lat} Long: {cityInfo?.coord.lon}
         </p>
       </CityLabel>
@@ -122,10 +122,16 @@ const CityLabel = styled.div`
   .cityName {
     font-size: 6.75vw;
   }
+  .cityCoord {
+    font-size: 1.5vw;
+  }
 
   @media (max-width: 600px) {
     .cityName {
       font-size: 8.5vh;
+    }
+    .cityCoord {
+      font-size: 5vw;
     }
   }
 `;
