@@ -41,6 +41,12 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearchClick();
+    }
+  };
+
   useEffect(() => {
     handleSearchClick();
   }, []);
@@ -58,6 +64,7 @@ const CitySearchBar: React.FC<CitySearchBarProps> = ({ onCityChange }) => {
         placeholder="Procure por uma cidade"
         value={formData.city}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
     </StyledLabel>
   );
