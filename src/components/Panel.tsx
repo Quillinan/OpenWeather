@@ -79,7 +79,6 @@ const Panel: React.FC<PanelProps> = () => {
       Thunderstorm: dark ? "#4f43ae" : "#5d0079",
       Drizzle: dark ? "#87CEEB" : "#246df3",
       Mist: dark ? "#D3D3D3" : "#737073",
-      Haze: dark ? "#D3D3D3" : "#737073",
     };
 
     setColor(main ? colorMap[main] : "#defaultColor");
